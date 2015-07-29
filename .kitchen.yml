@@ -1,0 +1,20 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: td_agent
+    driver:
+      box: phusion/ubuntu-14.04-amd64
+
+suites:
+  - name: default
+    run_list:
+      - recipe[duedil_wrapper_td_agent]
+  - name: docker_match
+    run_list:
+      - recipe[duedil_wrapper_td_agent::docker_match]
+    attributes:
